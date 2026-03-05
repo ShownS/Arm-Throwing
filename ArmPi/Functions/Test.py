@@ -390,13 +390,17 @@ if __name__ == '__main__':
     for i in range(500,801,5):
         Board.setBusServoPulse(5,i,0)
         time.sleep(0.05)
+    for i in range(500,600,5):
+        Board.setBusServoPulse(3,i,0)
     time.sleep(1.5)
     # Throw
-    Board.setBusServoPulse(5,475,100)
+    Board.setBusServoPulse(5,475,0)
+    Board.setBusServoPulse(3,500,0)
     time.sleep(0.24)
     # Release block
     Board.setBusServoPulse(1,200,0)
     
+
 
 
 
