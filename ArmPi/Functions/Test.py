@@ -376,7 +376,7 @@ if __name__ == '__main__':
     start()
 
     # Move to straight up position and wait 3 seconds
-    Board.setBusServoPulse(1, 280, 2000)
+    Board.setBusServoPulse(1, 200, 2000)
     Board.setBusServoPulse(2, 500, 2000)
     Board.setBusServoPulse(3, 500, 2000)
     Board.setBusServoPulse(4, 500, 2000)
@@ -395,6 +395,7 @@ if __name__ == '__main__':
     Board.setBusServoPulse(5,475,100)
     time.sleep(0.23)
     # Release block
-    Board.setBusServoPulse(1,250,0)
+    Board.setBusServoPulse(1,200,0)
     
+
 
