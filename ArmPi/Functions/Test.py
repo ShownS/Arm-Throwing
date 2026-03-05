@@ -374,36 +374,37 @@ def run(img):
 if __name__ == '__main__':
     init()
     start()
-    Board.setBusServoPulse(4, 400, 0)
-
-    # # Move to straight up position and wait 3 seconds
-    # Board.setBusServoPulse(1, 200, 2000)
-    # Board.setBusServoPulse(2, 500, 2000)
-    # Board.setBusServoPulse(3, 500, 2000)
-    # Board.setBusServoPulse(4, 500, 2000)
-    # Board.setBusServoPulse(5, 500, 2000)
-    # Board.setBusServoPulse(6, 100, 2000)
-    # time.sleep(3)
-    # # Grab block
-    # Board.setBusServoPulse(1, 550, 2000)
-    # time.sleep(2)
-    # # Move back slowly
-    # for i in range(500,801,5):
-    #     Board.setBusServoPulse(5,i,0)
-    #     time.sleep(0.05)
-    # for i in range(500,751,5):
-    #     Board.setBusServoPulse(3,i,0)
-    # for i in range(500,399,5):
-    #     Board.setBusServoPulse(4,i,0)
-    # time.sleep(1.5)
-    # # Throw
-    # Board.setBusServoPulse(5,475,0)
-    # Board.setBusServoPulse(4,500,0)
-    # Board.setBusServoPulse(3,500,0)
-    # time.sleep(0.23)
-    # # Release block
-    # Board.setBusServoPulse(1,200,0)
     
+
+    # Move to straight up position and wait 3 seconds
+    Board.setBusServoPulse(1, 200, 2000)
+    Board.setBusServoPulse(2, 500, 2000)
+    Board.setBusServoPulse(3, 500, 2000)
+    Board.setBusServoPulse(4, 500, 2000)
+    Board.setBusServoPulse(5, 500, 2000)
+    Board.setBusServoPulse(6, 100, 2000)
+    time.sleep(3)
+    # Grab block
+    Board.setBusServoPulse(1, 550, 2000)
+    time.sleep(2)
+    # Move back slowly
+    for i in range(500,801,5):
+        Board.setBusServoPulse(5,i,0)
+        time.sleep(0.05)
+    for i in range(500,751,5):
+        Board.setBusServoPulse(3,i,0)
+    for i in range(500,399,-5):
+        Board.setBusServoPulse(4,i,0)
+    time.sleep(1.5)
+    # Throw
+    Board.setBusServoPulse(5,475,0)
+    Board.setBusServoPulse(4,500,0)
+    Board.setBusServoPulse(3,500,0)
+    time.sleep(0.23)
+    # Release block
+    Board.setBusServoPulse(1,200,0)
+    
+
 
 
 
