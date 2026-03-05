@@ -56,7 +56,7 @@ servo1 = 500
 
 # 初始位置
 def initMove():
-    Board.setBusServoPulse(1, servo1 - 50, 300)
+    Board.setBusServoPulse(1, 200, 300)
     Board.setBusServoPulse(2, 500, 500)
     AK.setPitchRangeMoving((0, 10, 10), -30, -30, -90, 1500)
 
@@ -397,3 +397,4 @@ if __name__ == '__main__':
     # Release block
     Board.setBusServoPulse(1,250,0)
     
+
