@@ -5,11 +5,18 @@ Progress update for your project:
 (a) Names of group members: 
 Liv and Steele
 
-(b) One paragraph description of project concept
-We are programming our arm to find a block of a given color in the field of view, pick it up, and thne throw it at a target. This will involve two different cameras, one to film the pickup area and one to film the target area. For throwing at a target, we will be focussing on angular accuracy, not distance accuracy. Our MVP goal is to throw with a straight arm hinging at the shoulder joint and aiming by rotating at the base. We are planning to start by throwing with a fix speed and fixed release angle which should give us consitant distance travelled. If we have extra time, we will experiemnt with more complex throwing motions such as using more joints, or variable speed and release points. 
+(b) One paragraph description of project concept:
 
-(c) Flow chart or other high-level description of how your project code is expected to work
+We are going to program our arm to pick up a block and throw it as far as possible in a straight line. Stretch goal: Add with the pivot at the bototm of the arm. We are going to first optimize the kinematics of the arm movement using things like timing of the motors. Then, we are going to use a throwing basket to further increase the distance that the arm can throw. We are adding new attachments to the grippers to make this easier. Also, we might switch to a round object instead of a cube. Our report is going to include what variables we changed and how it affected the distance thrown.
 
+(c) Flow chart or other high-level description of how your project code is expected to work:
+Use percepetion to find block 
+verify that the basket is in its location using perception 
+pick up the block using the ColorSorting code
+place the block int he basked using ColorSorting code
+pick up the basket
+perform a hardcoded throw routine 
+return basket to prior location 
 
-(d) Description of where you are in the design/implementation process
-
+(d) Description of where you are in the design/implementation process:
+We are currently testing different kinemaatics and servo positioinings and timings to optimize the throw part of the routine. 
