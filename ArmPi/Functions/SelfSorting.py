@@ -165,11 +165,11 @@ class Motion:
 
     # Unsure if this works
     def pick_front(self, X, Y, rot):
-        front_z = 15
+        front_z = 18
         front_offset = 3.0
         a_1 = 0
-        a_2 = -1
-        a_3 = 1
+        a_2 = -20
+        a_3 = 20
         result = self.AK.setPitchRangeMoving((X, Y - front_offset, front_z), a_1, a_2, a_3)
         if result is False:
             print("No angle found")
@@ -412,6 +412,7 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
 
