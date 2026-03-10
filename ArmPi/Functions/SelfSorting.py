@@ -259,7 +259,7 @@ class Perception:
         self.world_X_avg = None
         self.world_Y_avg = None
 
-        self.color_worldcoords = []
+        self.color_worldcoords = {"red":None,"green":None,"blue":None}
 
     def reset(self):
         self.color_list = []
@@ -268,7 +268,7 @@ class Perception:
         self.confirmed_color = None
         self.world_X_avg = None
         self.world_Y_avg = None
-        self.color_worldcoords = []
+        
 
     def process(self, img):
         if img is None:
@@ -314,7 +314,7 @@ class Perception:
                 self.world_X, self.world_Y = self.world_x, self.world_y
 
                 #self.color_list.append(self.detect_color)
-                self.color_worldcoords.append((self.world_X, self.world_Y))
+                self.color_worldcoords[color] = (self.world_X, self.world_Y)
 
             #cv2.putText(frame_resize,f"{max_color}, ({self.world_X-1.0}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
             #            0.6,range_rgb[max_color],2)
@@ -401,8 +401,10 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick(perception.color_worldcoords[1][0], perception.color_worldcoords[1][1], rot)
-                motion.place(perception.color_worldcoords[2][0],perception.color_worldcoords[2][1], 6)
+                motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], rot)
+                motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,6)
+                motion.pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], rot)
+
 
                 perception.reset()
                 busy = False
