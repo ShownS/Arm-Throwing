@@ -288,7 +288,7 @@ class Perception:
         self.world_X_avg = None
         self.world_Y_avg = None
 
-        self.color_worldcoords = {"red":None,"green":None,"blue":None}
+        self.color_worldcoords = {"red":None,"green":None,"blue":None, "rot_r":None, "rot_g":None, "rot_b":None}
 
     def reset(self):
         self.color_list = []
@@ -344,6 +344,10 @@ class Perception:
 
                 #self.color_list.append(self.detect_color)
                 self.color_worldcoords[color] = (self.world_X, self.world_Y)
+                rot_color = "rot_" + color[0]
+                self.color_worldcoords[color] = (self.world_X, self.world_Y)
+                self.color_worldcoords[rot_color] = self.rotation_angle
+
 
             #cv2.putText(frame_resize,f"{max_color}, ({self.world_X-1.0}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
             #            0.6,range_rgb[max_color],2)
