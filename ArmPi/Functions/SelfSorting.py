@@ -137,8 +137,8 @@ class Motion:
         time.sleep(1.5)
 
     def pick(self, X, Y, rot):
-        app_z = 12
-        pick_z = 9
+        app_z = 5
+        pick_z = 2
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -45, -65, -35)
         if result is False:
             return False
@@ -259,6 +259,8 @@ class Perception:
         self.world_X_avg = None
         self.world_Y_avg = None
 
+        self.color_worldcoords = []
+
     def reset(self):
         self.color_list = []
         self.coordinate_list = []
@@ -266,6 +268,7 @@ class Perception:
         self.confirmed_color = None
         self.world_X_avg = None
         self.world_Y_avg = None
+        self.color_worldcoords = []
 
     def process(self, img):
         if img is None:
@@ -277,9 +280,9 @@ class Perception:
         frame_gb = cv2.GaussianBlur(frame_resize, (3, 3), 3)
         frame_lab = cv2.cvtColor(frame_gb, cv2.COLOR_BGR2LAB)
 
-        color_area_max = 0
+        #color_area_max = 0
         area_max_contour = None
-        max_color = None
+        #max_color = None
 
         for color in self.target_colors:
             if color not in color_range:
@@ -290,31 +293,31 @@ class Perception:
             closed = cv2.morphologyEx(opened, cv2.MORPH_CLOSE, np.ones((6, 6), np.uint8))
             contours = cv2.findContours(closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)[-2]
 
-            areaMaxContour, area_max = getAreaMaxContour(contours)
-            if areaMaxContour is not None and area_max > color_area_max:
-                color_area_max = area_max
-                area_max_contour = areaMaxContour
-                max_color = color
+            area_max_contour, _ = getAreaMaxContour(contours)
+            # if areaMaxContour is not None and area_max > color_area_max:
+            #     color_area_max = area_max
+            #     area_max_contour = areaMaxContour
+            #     max_color = color
 
-        detection = None
+            detection = None
 
-        if area_max_contour is not None and max_color is not None:
-            rect = cv2.minAreaRect(area_max_contour)
-            box = np.int0(cv2.boxPoints(rect))
-            cv2.drawContours(frame_resize, [box], -1, range_rgb[max_color], 2)
-            
-            self.rotation_angle = rect[2]
-            self.detect_color = max_color
+            if area_max_contour is not None:
+                rect = cv2.minAreaRect(area_max_contour)
+                box = np.int0(cv2.boxPoints(rect))
+                cv2.drawContours(frame_resize, [box], -1, range_rgb[color], 2)
+                
+                self.rotation_angle = rect[2]
+                self.detect_color = color
 
-            center_x, center_y = rect[0]
-            self.world_x, self.world_y = convertCoordinate(center_x, center_y, size=(640, 480))
-            self.world_X, self.world_Y = self.world_x, self.world_y
+                center_x, center_y = rect[0]
+                self.world_x, self.world_y = convertCoordinate(center_x, center_y, size=(640, 480))
+                self.world_X, self.world_Y = self.world_x, self.world_y
 
-            self.color_list.append(self.detect_color)
-            self.coordinate_list.append((self.world_X, self.world_Y))
+                #self.color_list.append(self.detect_color)
+                self.color_worldcoords.append((self.world_X, self.world_Y))
 
-            cv2.putText(frame_resize,f"{max_color}, ({self.world_X-1.0}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
-                        0.6,range_rgb[max_color],2)
+            #cv2.putText(frame_resize,f"{max_color}, ({self.world_X-1.0}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
+            #            0.6,range_rgb[max_color],2)
 
             if len(self.coordinate_list) >= 6:
                 self.stable_count += 1
@@ -398,7 +401,8 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick(X, Y, rot)
+                motion.pick(perception.color_worldcoords[0][0], perception.color_worldcoords[0][1], rot)
+                motion.place(perception.color_worldcoords[1][0],perception.color_worldcoords[1][1], 6)
 
                 perception.reset()
                 busy = False
@@ -414,7 +418,6 @@ if __name__ == '__main__':
         stop()
 
         exit()
-
 
 
 
