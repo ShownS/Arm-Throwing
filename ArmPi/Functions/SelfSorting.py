@@ -319,53 +319,53 @@ class Perception:
             #cv2.putText(frame_resize,f"{max_color}, ({self.world_X-1.0}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
             #            0.6,range_rgb[max_color],2)
 
-            if len(self.coordinate_list) >= 6:
-                self.stable_count += 1
+            # if len(self.coordinate_list) >= 6:
+            #     self.stable_count += 1
 
-                if self.stable_count >= 5:
-                    from collections import Counter
-                    most_common = Counter(self.color_list).most_common(1)[0][0]
-                    self.confirmed_color = most_common
+                # if self.stable_count >= 5:
+                #     from collections import Counter
+                #     most_common = Counter(self.color_list).most_common(1)[0][0]
+                #     self.confirmed_color = most_common
 
-                    xs = [p[0] for p in self.coordinate_list]
-                    ys = [p[1] for p in self.coordinate_list]
-                    self.world_X_avg = float(sum(xs) / len(xs))
-                    self.world_Y_avg = float(sum(ys) / len(ys))
-
-                    detection = {
-                        "stable": True,
-                        "ready": True,
-                        "confirmed_color": self.confirmed_color,
-                        "world_X_avg": self.world_X_avg,
-                        "world_Y_avg": self.world_Y_avg,
-                        "rotation_angle": float(self.rotation_angle),
-                        "world_x": float(self.world_x),
-                        "world_y": float(self.world_y),
-                    }
-                else:
-                    detection = {
-                        "stable": True,
-                        "ready": False,
-                        "confirmed_color": None,
-                        "world_X_avg": None,
-                        "world_Y_avg": None,
-                        "rotation_angle": float(self.rotation_angle),
-                        "world_x": float(self.world_x),
-                        "world_y": float(self.world_y),
-                    }
-            else:
-                detection = {
-                    "stable": False,
-                    "ready": False,
-                    "confirmed_color": None,
-                    "world_X_avg": None,
-                    "world_Y_avg": None,
-                    "rotation_angle": float(self.rotation_angle),
-                    "world_x": float(self.world_x),
-                    "world_y": float(self.world_y),
-                }
-        else:
-            self.reset()
+                #     xs = [p[0] for p in self.coordinate_list]
+                #     ys = [p[1] for p in self.coordinate_list]
+                #     self.world_X_avg = float(sum(xs) / len(xs))
+                #     self.world_Y_avg = float(sum(ys) / len(ys))
+                    #
+        detection = {
+            "stable": True,
+            "ready": True,
+            "confirmed_color": self.confirmed_color,
+            "world_X_avg": self.color_worldcoords[0][0],
+            "world_Y_avg": self.color_worldcoords[0][0],
+            "rotation_angle": float(self.rotation_angle),
+            "world_x": float(self.world_x),
+            "world_y": float(self.world_y),
+        }
+        #         else:
+        #             detection = {
+        #                 "stable": True,
+        #                 "ready": False,
+        #                 "confirmed_color": None,
+        #                 "world_X_avg": None,
+        #                 "world_Y_avg": None,
+        #                 "rotation_angle": float(self.rotation_angle),
+        #                 "world_x": float(self.world_x),
+        #                 "world_y": float(self.world_y),
+        #             }
+        #     else:
+        #         detection = {
+        #             "stable": False,
+        #             "ready": False,
+        #             "confirmed_color": None,
+        #             "world_X_avg": None,
+        #             "world_Y_avg": None,
+        #             "rotation_angle": float(self.rotation_angle),
+        #             "world_x": float(self.world_x),
+        #             "world_y": float(self.world_y),
+        #         }
+        # else:
+        #     self.reset()
 
         return frame_resize, detection
 
