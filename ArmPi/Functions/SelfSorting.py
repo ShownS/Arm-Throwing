@@ -165,7 +165,7 @@ class Motion:
 
     # Unsure if this works
     def pick_front(self, X, Y, rot):
-        front_z = 3.0
+        front_z = 4.5
         front_offset = 5.0
         a_1 = -90
         a_2 = 0
@@ -310,7 +310,7 @@ class Perception:
             self.color_list.append(self.detect_color)
             self.coordinate_list.append((self.world_X, self.world_Y))
 
-            cv2.putText(frame_resize,f"{max_color}, ({self.world_X}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
+            cv2.putText(frame_resize,f"{max_color}, ({self.world_X-1.0}, {self.world_Y})",(int(center_x) + 10, int(center_y)),cv2.FONT_HERSHEY_SIMPLEX,
                         0.6,range_rgb[max_color],2)
 
             if len(self.coordinate_list) >= 6:
@@ -411,3 +411,4 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
