@@ -137,8 +137,8 @@ class Motion:
         time.sleep(1.5)
 
     def pick(self, X, Y, rot):
-        app_z = 5
-        pick_z = 2
+        app_z = 4
+        pick_z = 1
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -45, -65, -35)
         if result is False:
             return False
