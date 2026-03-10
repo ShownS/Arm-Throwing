@@ -395,7 +395,7 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick_front(X, Y, rot, color)
+                motion.pick_front(X, Y, rot)
 
                 perception.reset()
                 busy = False
@@ -411,5 +411,6 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
