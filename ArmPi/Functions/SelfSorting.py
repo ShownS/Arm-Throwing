@@ -366,7 +366,7 @@ class Perception:
         #         }
         # else:
         #     self.reset()
-
+        print(self.color_worldcoords)
         return frame_resize, detection
 
 
