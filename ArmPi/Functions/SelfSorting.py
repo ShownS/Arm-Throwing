@@ -172,6 +172,7 @@ class Motion:
         a_3 = 1
         result = self.AK.setPitchRangeMoving((X, Y - front_offset, front_z), a_1, a_2, a_3)
         if result is False:
+            print("No angle found")
             return False
         time.sleep(result[2] / 1000.0)
 
@@ -411,6 +412,7 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
 
