@@ -166,6 +166,12 @@ class Motion:
         return True
     
     def b_pick(self, X, Y, rot):
+        Board.setBusServoPulse(1,500,2000)
+        Board.setBusServoPulse(2,500,2000)
+        Board.setBusServoPulse(3,500,2000)
+        Board.setBusServoPulse(4,500,2000)
+        Board.setBusServoPulse(5,500,2000)
+        Board.setBusServoPulse(6,500,2000)
         app_z = 7
         pick_z = 4
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -20, -40)
