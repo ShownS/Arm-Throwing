@@ -152,6 +152,8 @@ def basket():
         Board.setBusServoPulse(5,i,0)
         Board.setBusServoPulse(1,750,2000)
         time.sleep(0.05)
+    for i in range(500,349,-5):
+        Board.setBusServoPulse(4,i,0)
     time.sleep(2)
     Board.setBusServoPulse(5,500,0)
     time.sleep(5)
