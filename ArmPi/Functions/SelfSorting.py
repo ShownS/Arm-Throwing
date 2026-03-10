@@ -274,7 +274,7 @@ class Motion:
         self.home()
         return True
     
-    def basket():
+    def basket(self):
         Board.setBusServoPulse(1, 150, 2000)
         Board.setBusServoPulse(2, 500, 2000)
         Board.setBusServoPulse(3, 500, 2000)
