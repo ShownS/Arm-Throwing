@@ -139,7 +139,7 @@ class Motion:
     def pick(self, X, Y, rot):
         app_z = 4
         pick_z = 1
-        result = self.AK.setPitchRangeMoving((X, Y, app_z), -90, -90, 0)
+        result = self.AK.setPitchRangeMoving((X, Y, app_z), -90, -90, -60)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
@@ -151,7 +151,7 @@ class Motion:
         Board.setBusServoPulse(self.wrist_id, int(wrist_angle), 500)
         time.sleep(0.5)
 
-        self.AK.setPitchRangeMoving((X, Y, pick_z), -45, -65, -35, 1000)
+        self.AK.setPitchRangeMoving((X, Y, pick_z), -90, -90, -60, 1000)
         time.sleep(1.0)
 
         Board.setBusServoPulse(self.gripper_id, int(self.grip_closed), 500)
@@ -172,6 +172,7 @@ class Motion:
         Board.setBusServoPulse(4,500,2000)
         Board.setBusServoPulse(5,500,2000)
         Board.setBusServoPulse(6,500,2000)
+        time.sleep(3)
         app_z = 7
         pick_z = 4
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -20, -40)
