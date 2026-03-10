@@ -165,7 +165,7 @@ class Motion:
 
     # Unsure if this works
     def pick_front(self, X, Y, rot):
-        front_z = 16.5
+        front_z = 14
         front_offset = 3.0
         a_1 = 0
         a_2 = -20
@@ -412,6 +412,7 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
 
