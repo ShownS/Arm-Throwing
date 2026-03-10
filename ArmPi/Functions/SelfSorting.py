@@ -166,11 +166,11 @@ class Motion:
     # Unsure if this works
     def pick_front(self, X, Y, rot):
         front_z = 4.5
-        front_offset = 5.0
+        front_offset = 3.0
         a_1 = -90
         a_2 = 0
         a_3 = 0
-        result = self.AK.setPitchRangeMoving((X - front_offset, Y, front_z), a_1, a_2, a_3)
+        result = self.AK.setPitchRangeMoving((X, Y - front_offset, front_z), a_1, a_2, a_3)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
@@ -395,7 +395,7 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.sort(X, Y, rot, color)
+                motion.pick_front(X, Y, rot, color)
 
                 perception.reset()
                 busy = False
@@ -411,4 +411,5 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
