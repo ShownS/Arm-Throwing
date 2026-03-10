@@ -273,6 +273,29 @@ class Motion:
 
         self.home()
         return True
+    
+    def basket():
+        Board.setBusServoPulse(1, 150, 2000)
+        Board.setBusServoPulse(2, 500, 2000)
+        Board.setBusServoPulse(3, 500, 2000)
+        Board.setBusServoPulse(4, 500, 2000)
+        Board.setBusServoPulse(5, 500, 2000)
+        Board.setBusServoPulse(6, 150, 2000)
+        time.sleep(2)
+
+        Board.setBusServoPulse(1,750,2000)
+        time.sleep(1)
+        for i in range(500,851,5):
+            Board.setBusServoPulse(5,i,0)
+            Board.setBusServoPulse(1,750,2000)
+            time.sleep(0.05)
+        for i in range(500,349,-5):
+            Board.setBusServoPulse(4,i,0)
+        time.sleep(2)
+        Board.setBusServoPulse(5,500,0)
+        time.sleep(5)
+        Board.setBusServoPulse(1,150,0)
+
 
 class Perception:
     def __init__(self, target_colors=('red', 'green', 'blue')):
@@ -444,7 +467,7 @@ if __name__ == '__main__':
                 motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
                 motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,6)
                 motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], perception.color_worldcoords["rot_b"])
-
+                motion.basket()
 
                 perception.reset()
                 busy = False
