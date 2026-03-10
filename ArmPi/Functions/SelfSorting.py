@@ -401,8 +401,8 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick(perception.color_worldcoords[0][0], perception.color_worldcoords[0][1], rot)
-                motion.place(perception.color_worldcoords[1][0],perception.color_worldcoords[1][1], 6)
+                motion.pick(perception.color_worldcoords[1][0], perception.color_worldcoords[1][1], rot)
+                motion.place(perception.color_worldcoords[2][0],perception.color_worldcoords[2][1], 6)
 
                 perception.reset()
                 busy = False
