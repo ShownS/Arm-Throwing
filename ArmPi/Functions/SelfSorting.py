@@ -163,6 +163,35 @@ class Motion:
 
         return True
 
+    # Unsure if this works
+    def pick_front(self, X, Y, rot):
+        front_z = 3.0
+        front_offset = 5.0
+        a_1 = -90
+        a_2 = 0
+        a_3 = 0
+        result = self.AK.setPitchRangeMoving((X - front_offset, Y, front_z), a_1, a_2, a_3)
+        if result is False:
+            return False
+        time.sleep(result[2] / 1000.0)
+
+        Board.setBusServoPulse(self.gripper_id, int(self.grip_open), 500)
+        time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((X, Y, front_z), a_1, a_2, a_3)
+        time.sleep(1.0)
+
+        Board.setBusServoPulse(self.gripper_id, int(self.grip_closed), 500)
+        time.sleep(0.5)
+
+        Board.setBusServoPulse(self.wrist_id, int(self.wrist_center), 500)
+        time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((X, Y, self.lift_z), a_1, a_2, a_3, 1000)
+        time.sleep(1.0)
+
+        return True
+
     def place(self, x, y, z):
         result = self.AK.setPitchRangeMoving((x, y, self.lift_z), -90, -90, 0)
         if result is False:
@@ -380,4 +409,5 @@ if __name__ == '__main__':
         my_camera.camera_close()
         cv2.destroyAllWindows()
         stop()
+
         exit()
