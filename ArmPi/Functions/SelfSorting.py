@@ -168,7 +168,7 @@ class Motion:
         front_z = 4.5
         front_offset = 3.0
         a_1 = -90
-        a_2 = 0
+        a_2 = 90
         a_3 = 0
         result = self.AK.setPitchRangeMoving((X, Y - front_offset, front_z), a_1, a_2, a_3)
         if result is False:
@@ -411,6 +411,7 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
 
