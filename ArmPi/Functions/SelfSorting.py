@@ -468,7 +468,7 @@ if __name__ == '__main__':
                 motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,6)
                 motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], perception.color_worldcoords["rot_b"])
                 motion.basket()
-
+                time.sleep(10)
                 perception.reset()
                 busy = False
 
