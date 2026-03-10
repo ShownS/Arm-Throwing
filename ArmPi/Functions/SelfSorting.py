@@ -166,8 +166,8 @@ class Motion:
         return True
     
     def b_pick(self, X, Y, rot):
-        app_z = 10
-        pick_z = 7
+        app_z = 7
+        pick_z = 4
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -45, -65, -35)
         if result is False:
             return False
