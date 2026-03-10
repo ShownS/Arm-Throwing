@@ -164,6 +164,35 @@ class Motion:
         time.sleep(1.0)
 
         return True
+    
+    def b_pick(self, X, Y, rot):
+        app_z = 13
+        pick_z = 10
+        result = self.AK.setPitchRangeMoving((X, Y, app_z), -45, -65, -35)
+        if result is False:
+            return False
+        time.sleep(result[2] / 1000.0)
+
+        Board.setBusServoPulse(self.gripper_id, int(self.grip_open), 500)
+        time.sleep(0.5)
+
+        wrist_angle = getAngle(X, Y, rot)
+        Board.setBusServoPulse(self.wrist_id, int(wrist_angle), 500)
+        time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((X, Y, pick_z), -45, -65, -35, 1000)
+        time.sleep(1.0)
+
+        Board.setBusServoPulse(self.gripper_id, int(self.grip_closed), 500)
+        time.sleep(0.5)
+
+        Board.setBusServoPulse(self.wrist_id, int(self.wrist_center), 500)
+        time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((X, Y, self.lift_z), -90, -90, 0, 1000)
+        time.sleep(1.0)
+
+        return True
 
     # Unsure if this works
     def pick_front(self, X, Y, rot):
@@ -403,7 +432,7 @@ if __name__ == '__main__':
 
                 motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], rot)
                 motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,6)
-                motion.pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], rot)
+                motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], rot)
 
 
                 perception.reset()
