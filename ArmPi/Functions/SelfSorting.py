@@ -434,9 +434,9 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], rot)
+                motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
                 motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,6)
-                motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], rot)
+                motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], perception.color_worldcoords["rot_b"])
 
 
                 perception.reset()
