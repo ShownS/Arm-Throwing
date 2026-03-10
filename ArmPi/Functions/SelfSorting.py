@@ -139,7 +139,7 @@ class Motion:
     def pick(self, X, Y, rot):
         app_z = 4
         pick_z = 1
-        result = self.AK.setPitchRangeMoving((X, Y, app_z), -45, -65, -35)
+        result = self.AK.setPitchRangeMoving((X, Y, app_z), -90, -90, 0)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
@@ -168,7 +168,7 @@ class Motion:
     def b_pick(self, X, Y, rot):
         app_z = 7
         pick_z = 4
-        result = self.AK.setPitchRangeMoving((X, Y, app_z), -45, -65, -35)
+        result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -20, -40)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
