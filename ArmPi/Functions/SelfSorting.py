@@ -137,7 +137,9 @@ class Motion:
         time.sleep(1.5)
 
     def pick(self, X, Y, rot):
-        result = self.AK.setPitchRangeMoving((X, Y, self.approach_z), -90, -90, 0)
+        app_z = 12
+        pick_z = 9
+        result = self.AK.setPitchRangeMoving((X, Y, self.approach_z), -45, -65, -35)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
@@ -149,7 +151,7 @@ class Motion:
         Board.setBusServoPulse(self.wrist_id, int(wrist_angle), 500)
         time.sleep(0.5)
 
-        self.AK.setPitchRangeMoving((X, Y, self.pick_z), -90, -90, 0, 1000)
+        self.AK.setPitchRangeMoving((X, Y, self.pick_z), -45, -65, -35, 1000)
         time.sleep(1.0)
 
         Board.setBusServoPulse(self.gripper_id, int(self.grip_closed), 500)
@@ -396,7 +398,7 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick_front(X, Y, rot)
+                motion.pick(X, Y, rot)
 
                 perception.reset()
                 busy = False
@@ -412,6 +414,7 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
 
