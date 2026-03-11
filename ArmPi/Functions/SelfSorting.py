@@ -293,6 +293,7 @@ class Motion:
             Board.setBusServoPulse(4,i,0)
         time.sleep(2)
         Board.setBusServoPulse(5,500,0)
+        Board.setBusServoPulse(4,500,0)
         time.sleep(5)
         Board.setBusServoPulse(1,150,0)
 
