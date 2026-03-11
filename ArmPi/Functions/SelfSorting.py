@@ -174,7 +174,7 @@ class Motion:
         Board.setBusServoPulse(6,500,2000)
         time.sleep(3)
         app_z = 10
-        pick_z = 4
+        pick_z = 7
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -20, -40)
         if result is False:
             return False
@@ -289,9 +289,9 @@ class Motion:
             Board.setBusServoPulse(5,i,0)
             Board.setBusServoPulse(1,750,2000)
             time.sleep(0.05)
-        for i in range(500,651,5):
-            Board.setBusServoPulse(4,i,0)
-            time.sleep(0.05)
+        # for i in range(500,651,5):
+        #     Board.setBusServoPulse(4,i,0)
+        #     time.sleep(0.05)
         time.sleep(2)
         Board.setBusServoPulse(5,500,0)
         Board.setBusServoPulse(4,500,0)
@@ -485,6 +485,7 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
 
 
 
