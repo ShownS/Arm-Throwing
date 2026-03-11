@@ -275,7 +275,7 @@ class Motion:
         return True
     
     def basket(self):
-        Board.setBusServoPulse(1, 150, 2000)
+        Board.setBusServoPulse(1, 750, 2000)
         Board.setBusServoPulse(2, 500, 2000)
         Board.setBusServoPulse(3, 500, 2000)
         Board.setBusServoPulse(4, 500, 2000)
@@ -291,6 +291,7 @@ class Motion:
             time.sleep(0.05)
         for i in range(500,651,5):
             Board.setBusServoPulse(4,i,0)
+            time.sleep(0.05)
         time.sleep(2)
         Board.setBusServoPulse(5,500,0)
         Board.setBusServoPulse(4,500,0)
