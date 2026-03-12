@@ -305,7 +305,7 @@ class Motion:
         # Board.setBusServoPulse(4, 650, 2000)
         Board.setBusServoPulse(5, 500, 2000)
         Board.setBusServoPulse(6, 850, 2000)
-        # time.sleep(2)
+        time.sleep(2)
 
         for i in range(500,149,-5):
             Board.setBusServoPulse(5,i,0)
@@ -529,7 +529,7 @@ if __name__ == '__main__':
                     motion.place(perception.color_worldcoords["red"][0]-1,perception.color_worldcoords["red"][1]+0.2 ,9)
                     motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
                     motion.basket()
-                    motion.b_place(perception.color_worldcoords["red"][0]+0.5,perception.color_worldcoords["red"][1]+0.4 ,9)
+                    motion.b_place(perception.color_worldcoords["red"][0], perception.color_worldcoords["red"][1], 9)
                     print("Placed")
                     time.sleep(5)
                     perception.reset()
