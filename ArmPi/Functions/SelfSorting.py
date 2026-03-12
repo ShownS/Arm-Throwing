@@ -138,7 +138,7 @@ class Motion:
 
     def pick(self, X, Y, rot):
         app_z = 5
-        pick_z = 1
+        pick_z = 0.5
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -90, -90, -60)
         if result is False:
             return False
@@ -313,10 +313,10 @@ class Motion:
         for i in range(500,801,5):
             Board.setBusServoPulse(5,i,0)
             time.sleep(0.05)
-        for i in range(500,751,5):
-            Board.setBusServoPulse(3,i,0)
-        for i in range(500,249,-5):
-            Board.setBusServoPulse(4,i,0)
+        # for i in range(500,751,5):
+        #     Board.setBusServoPulse(3,i,0)
+        # for i in range(500,249,-5):
+        #     Board.setBusServoPulse(4,i,0)
         time.sleep(1.5)
         # Throw
         Board.setBusServoPulse(5,475,0)
