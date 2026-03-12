@@ -529,7 +529,7 @@ if __name__ == '__main__':
                     motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1]+0.2 ,9)
                     motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
                     motion.basket()
-                    motion.b_place(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], 9)
+                    motion.b_place(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], 0.5)
                     print("Placed")
                     time.sleep(5)
                     perception.reset()
