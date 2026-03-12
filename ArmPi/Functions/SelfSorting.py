@@ -137,8 +137,8 @@ class Motion:
         time.sleep(1.5)
 
     def pick(self, X, Y, rot):
-        app_z = 4
-        pick_z = 1
+        app_z = 5
+        pick_z = 1.5
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -90, -90, -60)
         if result is False:
             return False
@@ -174,7 +174,7 @@ class Motion:
         Board.setBusServoPulse(6,500,2000)
         time.sleep(3)
         app_z = 10
-        pick_z = 4
+        pick_z = 7
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -20, -40)
         if result is False:
             return False
@@ -289,9 +289,9 @@ class Motion:
             Board.setBusServoPulse(5,i,0)
             Board.setBusServoPulse(1,750,2000)
             time.sleep(0.05)
-        for i in range(500,651,5):
-            Board.setBusServoPulse(4,i,0)
-            time.sleep(0.05)
+        # for i in range(500,651,5):
+        #     Board.setBusServoPulse(4,i,0)
+        #     time.sleep(0.05)
         time.sleep(2)
         Board.setBusServoPulse(5,500,0)
         Board.setBusServoPulse(4,500,0)
@@ -496,8 +496,8 @@ if __name__ == '__main__':
                 color = detection["confirmed_color"]
 
                 motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
-                motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,6)
-                motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], perception.color_worldcoords["rot_b"])
+                motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,9)
+                motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
                 motion.basket()
                 time.sleep(10)
                 perception.reset()
@@ -514,6 +514,9 @@ if __name__ == '__main__':
         stop()
 
         exit()
+
+
+
 
 
 
