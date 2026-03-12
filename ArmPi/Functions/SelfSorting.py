@@ -202,7 +202,7 @@ class Motion:
         return True
     
     def b_place(self, x, y, z):
-        result = self.AK.setPitchRangeMoving((x, y, 15), -30, -25, -35)
+        result = self.AK.setPitchRangeMoving((x, y, 15), -30, -90, 0)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
@@ -526,10 +526,10 @@ if __name__ == '__main__':
                     print("Going to green")
                     motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
                     print("Have green")
-                    motion.place(perception.color_worldcoords["red"][0]+0.3,perception.color_worldcoords["red"][1]+0.4 ,9)
+                    motion.place(perception.color_worldcoords["red"][0]+0.5,perception.color_worldcoords["red"][1]+0.4 ,9)
                     motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
                     motion.basket()
-                    motion.b_place()
+                    motion.b_place(perception.color_worldcoords["red"][0]+0.5,perception.color_worldcoords["red"][1]+0.4 ,9)
                     print("Placed")
                     time.sleep(5)
                     perception.reset()
