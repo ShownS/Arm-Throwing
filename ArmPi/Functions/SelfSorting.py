@@ -297,7 +297,7 @@ class Motion:
         time.sleep(5)
         Board.setBusServoPulse(1,150,0)
     
-    def no_basket():
+    def no_basket(self):
         # Move to straight up position and wait 3 seconds
         Board.setBusServoPulse(1, 200, 2000)
         Board.setBusServoPulse(2, 500, 2000)
