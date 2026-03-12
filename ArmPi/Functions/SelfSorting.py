@@ -214,7 +214,7 @@ class Motion:
         self.AK.setPitchRangeMoving((x, y, z + 3), -30, -25, -35, 500)
         time.sleep(0.5)
 
-        self.AK.setPitchRangeMoving((x, y, z), -30, -10, -50, 1000)
+        self.AK.setPitchRangeMoving((x, y, z), -30, -15, -45, 1000)
         time.sleep(1.0)
 
         Board.setBusServoPulse(self.gripper_id, int(self.grip_release), 500)
@@ -529,7 +529,7 @@ if __name__ == '__main__':
                     motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1]+0.2 ,9)
                     motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
                     motion.basket()
-                    motion.b_place(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, 0.5)
+                    motion.b_place(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1.5, 6)
                     print("Placed")
                     time.sleep(5)
                     perception.reset()
