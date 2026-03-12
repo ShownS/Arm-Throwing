@@ -138,7 +138,7 @@ class Motion:
 
     def pick(self, X, Y, rot):
         app_z = 5
-        pick_z = 1.5
+        pick_z = 1
         result = self.AK.setPitchRangeMoving((X, Y, app_z), -90, -90, -60)
         if result is False:
             return False
@@ -278,7 +278,7 @@ class Motion:
         Board.setBusServoPulse(1, 750, 2000)
         Board.setBusServoPulse(2, 500, 2000)
         Board.setBusServoPulse(3, 500, 2000)
-        Board.setBusServoPulse(4, 350, 2000)
+        Board.setBusServoPulse(4, 650, 2000)
         Board.setBusServoPulse(5, 500, 2000)
         Board.setBusServoPulse(6, 850, 2000)
         time.sleep(2)
@@ -499,7 +499,7 @@ if __name__ == '__main__':
                 if mode =="y":
                     motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
                     motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,9)
-                    motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
+                    motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], perception.color_worldcoords["rot_b"])
                     motion.basket()
                     time.sleep(10)
                     perception.reset()
