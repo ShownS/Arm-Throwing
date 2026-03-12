@@ -295,7 +295,7 @@ class Motion:
         Board.setBusServoPulse(5,500,0)
         # Board.setBusServoPulse(4,500,0)
         time.sleep(5)
-        Board.setBusServoPulse(1,150,0)
+        # Board.setBusServoPulse(1,150,0)
     
     def no_basket(self):
         # Move to straight up position and wait 3 seconds
@@ -501,7 +501,7 @@ if __name__ == '__main__':
                 if mode =="y":
                     motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
                     motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,9)
-                    motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1], perception.color_worldcoords["rot_b"])
+                    motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-0.5, perception.color_worldcoords["rot_b"])
                     motion.basket()
                     time.sleep(10)
                     perception.reset()
