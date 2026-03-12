@@ -297,6 +297,35 @@ class Motion:
         Board.setBusServoPulse(4,500,0)
         time.sleep(5)
         Board.setBusServoPulse(1,150,0)
+    
+    def no_basket():
+        # Move to straight up position and wait 3 seconds
+        Board.setBusServoPulse(1, 200, 2000)
+        Board.setBusServoPulse(2, 500, 2000)
+        Board.setBusServoPulse(3, 500, 2000)
+        Board.setBusServoPulse(4, 500, 2000)
+        Board.setBusServoPulse(5, 500, 2000)
+        Board.setBusServoPulse(6, 100, 2000)
+        time.sleep(3)
+        # Grab block
+        Board.setBusServoPulse(1, 400, 2000)
+        time.sleep(2)
+        # Move back slowly
+        for i in range(500,801,5):
+            Board.setBusServoPulse(5,i,0)
+            time.sleep(0.05)
+        for i in range(500,751,5):
+            Board.setBusServoPulse(3,i,0)
+        for i in range(500,249,-5):
+            Board.setBusServoPulse(4,i,0)
+        time.sleep(1.5)
+        # Throw
+        Board.setBusServoPulse(5,475,0)
+        Board.setBusServoPulse(4,500,0)
+        Board.setBusServoPulse(3,450,0)
+        time.sleep(0.21)
+        # Release block
+        Board.setBusServoPulse(1,200,0)
 
 
 class Perception:
