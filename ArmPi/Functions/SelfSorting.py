@@ -217,7 +217,7 @@ class Motion:
         self.AK.setPitchRangeMoving((x, y, z), -30, -15, -45, 1000)
         time.sleep(1.0)
 
-        Board.setBusServoPulse(self.gripper_id, int(self.grip_release), 400)
+        Board.setBusServoPulse(self.gripper_id, 100, 500)
         time.sleep(0.5)
 
         self.AK.setPitchRangeMoving((x, y, 15), -90, -90, 0, 800)
