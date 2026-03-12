@@ -175,7 +175,7 @@ class Motion:
         time.sleep(3)
         app_z = 10
         pick_z = 6
-        result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -20, -40)
+        result = self.AK.setPitchRangeMoving((X, Y, app_z), -30, -25, -35)
         if result is False:
             return False
         time.sleep(result[2] / 1000.0)
@@ -187,7 +187,7 @@ class Motion:
         Board.setBusServoPulse(self.wrist_id, int(wrist_angle), 500)
         time.sleep(0.5)
 
-        self.AK.setPitchRangeMoving((X, Y, pick_z), -45, -65, -35, 1000)
+        self.AK.setPitchRangeMoving((X, Y, pick_z), 30, -25, -35, 1000)
         time.sleep(1.0)
 
         Board.setBusServoPulse(self.gripper_id, int(self.grip_closed), 500)
@@ -198,6 +198,30 @@ class Motion:
 
         self.AK.setPitchRangeMoving((X, Y, self.lift_z), -90, -90, 0, 1000)
         time.sleep(1.0)
+
+        return True
+    
+    def b_place(self, x, y, z):
+        result = self.AK.setPitchRangeMoving((x, y, 15), -30, -25, -35)
+        if result is False:
+            return False
+        time.sleep(result[2] / 1000.0)
+
+        # wrist_angle = getAngle(x, y, -90)
+        # Board.setBusServoPulse(self.wrist_id, int(wrist_angle), 500)
+        # time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((x, y, z + 3), -30, -25, -35, 500)
+        time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((x, y, z), -30, -25, -35, 1000)
+        time.sleep(1.0)
+
+        Board.setBusServoPulse(self.gripper_id, int(self.grip_release), 500)
+        time.sleep(0.5)
+
+        self.AK.setPitchRangeMoving((x, y, 15), -90, -90, 0, 800)
+        time.sleep(0.8)
 
         return True
 
@@ -287,7 +311,7 @@ class Motion:
             Board.setBusServoPulse(5,i,0)
             Board.setBusServoPulse(1,750,2000)
             time.sleep(0.05)
-        
+        Board.setBusServoPulse(4, 500, 2000)
         # for i in range(500,651,5):
         #     Board.setBusServoPulse(4,i,0)
         #     time.sleep(0.05)
@@ -502,10 +526,12 @@ if __name__ == '__main__':
                     print("Going to green")
                     motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
                     print("Have green")
-                    motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,9)
+                    motion.place(perception.color_worldcoords["red"][0]+0.3,perception.color_worldcoords["red"][1]+0.4 ,9)
                     motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
                     motion.basket()
-                    time.sleep(10)
+                    motion.b_place()
+                    print("Placed")
+                    time.sleep(5)
                     perception.reset()
                     busy = False
                 else:
