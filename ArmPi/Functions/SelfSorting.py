@@ -278,17 +278,16 @@ class Motion:
         Board.setBusServoPulse(1, 750, 2000)
         Board.setBusServoPulse(2, 500, 2000)
         Board.setBusServoPulse(3, 500, 2000)
-        Board.setBusServoPulse(4, 500, 2000)
+        Board.setBusServoPulse(4, 350, 2000)
         Board.setBusServoPulse(5, 500, 2000)
         Board.setBusServoPulse(6, 850, 2000)
         time.sleep(2)
 
-        # Board.setBusServoPulse(1,750,2000)
-        # time.sleep(1)
         for i in range(500,149,-5):
             Board.setBusServoPulse(5,i,0)
             Board.setBusServoPulse(1,750,2000)
             time.sleep(0.05)
+        Board.setBusServoPulse(4,500,0)
         # for i in range(500,651,5):
         #     Board.setBusServoPulse(4,i,0)
         #     time.sleep(0.05)
@@ -341,7 +340,7 @@ class Perception:
         self.rotation_angle = 0.0
         self.detect_color = 'None'
 
-        self.color_list = []
+        # self.color_list = []
         self.coordinate_list = []
 
         self.stable_count = 0
@@ -352,7 +351,7 @@ class Perception:
         self.color_worldcoords = {"red":None,"green":None,"blue":None, "rot_r":None, "rot_g":None, "rot_b":None}
 
     def reset(self):
-        self.color_list = []
+        # self.color_list = []
         self.coordinate_list = []
         self.stable_count = 0
         self.confirmed_color = None
@@ -495,13 +494,21 @@ if __name__ == '__main__':
                 rot = detection["rotation_angle"]
                 color = detection["confirmed_color"]
 
-                motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
-                motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,9)
-                motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
-                motion.basket()
-                time.sleep(10)
-                perception.reset()
-                busy = False
+                mode = input("Basket? y/n")
+
+                if mode =="y":
+                    motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
+                    motion.place(perception.color_worldcoords["red"][0],perception.color_worldcoords["red"][1] ,9)
+                    motion.b_pick(perception.color_worldcoords["blue"][0], perception.color_worldcoords["blue"][1]-1, perception.color_worldcoords["rot_b"])
+                    motion.basket()
+                    time.sleep(10)
+                    perception.reset()
+                    busy = False
+                else:
+                    motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
+                    motion.no_basket()
+                    perception.rest()
+                    busy = False
 
             cv2.imshow('Perception Demo', annotated)
             key = cv2.waitKey(1) & 0xFF
