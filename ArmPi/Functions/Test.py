@@ -451,7 +451,7 @@ def run(img):
 if __name__ == '__main__':
     init()
     start()
-    no_basket()
+    original()
     
 
 
