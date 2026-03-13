@@ -522,6 +522,9 @@ if __name__ == '__main__':
 
                 mode = input("Basket? y/n")
 
+                my_camera.camera_close()
+                cv2.destroyAllWindows()
+
                 if mode =="y":
                     print("Going to green")
                     motion.pick(perception.color_worldcoords["green"][0], perception.color_worldcoords["green"][1], perception.color_worldcoords["rot_g"])
