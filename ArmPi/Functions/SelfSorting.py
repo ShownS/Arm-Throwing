@@ -345,9 +345,9 @@ class Motion:
             time.sleep(0.05)
         time.sleep(1.5)
         # Throw
-        Board.setBusServoPulse(5,475,0)
-        Board.setBusServoPulse(4,500,0)
-        Board.setBusServoPulse(3,450,0)
+        Board.setBusServoPulse(5,475,100)
+        Board.setBusServoPulse(4,500,100)
+        Board.setBusServoPulse(3,450,100)
         time.sleep(0.21)
         # Release block
         Board.setBusServoPulse(1,200,0)
