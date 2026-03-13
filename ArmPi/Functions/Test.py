@@ -427,7 +427,7 @@ def run(img):
 if __name__ == '__main__':
     init()
     start()
-    basket()
+    no_basket()
     
 
 
