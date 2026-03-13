@@ -156,7 +156,7 @@ def original():
     time.sleep(1.5)
     # Throw
     Board.setBusServoPulse(5,475,0)
-    time.sleep(0.18)
+    time.sleep(0.2)
     # Release block
     Board.setBusServoPulse(1,200,0)
 
